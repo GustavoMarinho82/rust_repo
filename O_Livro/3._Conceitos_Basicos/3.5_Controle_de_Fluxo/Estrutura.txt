@@ -1,0 +1,108 @@
+IF
+-----------------------------------------------------------
+fn main() {
+    let mut x: u8 = 1
+
+    if x ==0 {
+        println!("x é igual a 0");
+
+    } else if x ==1 {
+        println!("x é igual a 1")
+
+    } else {
+        println!("x é diferente de 0 e 1")
+    }
+}
+-----------------------------------------------------------
+fn main() {
+    let condition = true;
+    let number = if condition { 5 } else { 6 };
+
+    println!("The value of number is: {number}");
+}
+===========================================================
+
+
+LOOP
+-----------------------------------------------------------
+fn main() {
+    loop {
+        println!("again!");	//Irá executar até "Ctrl+C" ser pressionado
+    }
+}
+-----------------------------------------------------------
+fn main() {
+    loop {
+        x +=1; 			//Irá executar até o "break" ser acionadado
+    
+        if x ==5 {
+		break;
+        }
+    }
+
+}
+===========================================================
+
+
+WHILE
+-----------------------------------------------------------
+fn main() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    }
+
+    println!("The number is zero!");
+}
+-----------------------------------------------------------
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+}
+===========================================================
+
+
+FOR
+-----------------------------------------------------------
+for i in 0..5 {
+    println!("{}", i * 2);
+}
+-----------------------------------------------------------
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {element}");
+    }
+}
+===========================================================
+
+
+MATCH
+-----------------------------------------------------------
+fn main() {
+
+    let maça = 3;
+
+    match maça {
+    	0 => println!("0 maças"), 
+    	1 => println!("1 maça"),
+    	2 => println!("2 maças"),
+    	3 => {println!("3 maças");
+    		println!("Número do azar :(");
+    	}
+    	4..=99 => println!("entre 3 e 100 maças"),
+    	_ => println!("maças negativas ou mais que 99"),
+    }
+
+}
+===========================================================

@@ -1,0 +1,37 @@
+FUNÇÃO SEM PARAMETROS E SEM RETORNO
+===========================================================
+fn print_hello_world() {
+	println!("Hello World!")
+}
+===========================================================
+
+
+FUNÇÃO COM PARAMETROS E SEM RETORNO
+===========================================================
+fn print_valor(valor: i32) {
+	println!("{}", valor)
+}
+===========================================================
+
+
+FUNÇÃO SEM PARAMETROS E COM RETORNO
+===========================================================
+fn ler_int() -> i32 {
+    let mut temporario = String::new();
+
+        io::stdin()
+            .read_line(&mut temporario)
+            .expect("Falha ao ler a linha!");
+            
+    temporario.trim().parse().expect("Falha ao converter a tipagem!")	
+	//Esse valor será o retorno, pois ele não termina com ;
+}
+===========================================================
+
+
+FUNÇÃO COM PARAMETROS E COM RETORNO
+===========================================================
+fn elevar_a_dois(valor: i64) -> i64 {
+	valor * valor
+}
+===========================================================

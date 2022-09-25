@@ -1,0 +1,7 @@
+Comandos:
+
+let x = [valor]		- declara uma variavel imutável
+
+let mut x = [valor]	- declara uma variavel mutável
+
+const x: u32 = [valor]	- declara uma variavel constante

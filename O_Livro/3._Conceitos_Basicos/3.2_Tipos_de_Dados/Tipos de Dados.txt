@@ -1,0 +1,164 @@
+	Cada valor no Rust possui um tipo de dado, que informa ao Rust que tipo de dados está sendo especificado para que ele saiba como trabalhar com esses dados. Veremos dois subconjuntos de tipos de dados: escalar e composto (scalar and compound).
+
+TIPOS ESCALARES
+	Um tipo escalar representa um único valor. Rust tem quatro tipos escalares primários: 
+- inteiros, 
+- números de ponto flutuante, 
+- booleanos e 
+- caracteres. 
+
+
++ INTEIROS
+	Um inteiro é um número sem um componente fracionário. Usamos um tipo inteiro no Capítulo 2, o u32tipo. Essa declaração de tipo indica que o valor ao qual está associado deve ser um inteiro sem sinal (os tipos de inteiro com sinal começam com i, em vez de u) que ocupa 32 bits de espaço.
+	Cada variante pode ser assinada ou não e tem um tamanho explícito. Sinalizado e sem sinal referem-se a se é possível que o número seja negativo - em outras palavras, se o número precisa ter um sinal com ele (sinalizado) ou se ele só será positivo e, portanto, pode ser representado sem sinal (sem sinal ). É como escrever números no papel: quando o sinal importa, um número é mostrado com um sinal de mais ou um sinal de menos; no entanto, quando é seguro assumir que o número é positivo, ele é mostrado sem sinal.
+	Cada variante assinada pode armazenar números de -( 2^(n-1) ) a ( 2^(n-1) )-1 inclusive, onde n é o número de bits que a variante usa. Assim, um i8 pode armazenar números de -(2^7) a (2^7)-1, o que equivale a -128 a 127. Variantes sem sinal podem armazenar números de 0 a (2^n)-1, portanto, um u8 pode armazenar números de 0 a (2^8)-1, que é igual a 0 a 255.
+	Além disso, os tipos isizee usizedependem da arquitetura do computador em que seu programa está sendo executado, que é indicado na tabela como “arch”: 64 bits se você estiver em uma arquitetura de 64 bits e 32 bits se estiver em uma arquitetura de 32 bits.
+
+_________________________________________
+|	LENGTH	|SIGNED	|UNSIGNED	|
+|=======================================|
+|	8-bit	|i8	|u8		|
+|	16-bit	|i16	|u16		|
+|	32-bit	|i32	|u32		|
+|	64-bit	|i64	|u64		|
+|	128-bit	|i128	|u128		|
+|	arch	|isize	|usize		|
+|_______________________________________|
+
+
++ PONTO FLUTUANTE
+	Rust também tem dois tipos primitivos para números de ponto flutuante , que são números com pontos decimais. Os tipos de ponto flutuante do Rust são f32 e f64, que têm 32 bits e 64 bits de tamanho, respectivamente. O tipo padrão é f64 porque em CPUs modernas é aproximadamente a mesma velocidade, f32 mas é capaz de mais precisão. Todos os tipos de ponto flutuante são assinados.
+
+===========================================================
+fn main() {
+    let x = 2.0; // f64
+
+    let y: f32 = 3.0; // f32
+}
+===========================================================
+
+
++ BOOLEAN
+	Como na maioria das outras linguagens de programação, um tipo booleano em Rust tem dois valores possíveis: truee false. Booleanos têm um byte de tamanho. O tipo booleano em Rust é especificado usando bool.
+
+===========================================================
+fn main() {
+    let t = true;
+
+    let f: bool = false; // with explicit type annotation
+}
+===========================================================
+
+
++ CHAR
+	O tipo de Rust charé o tipo alfabético mais primitivo da linguagem. Observe que especificamos charliterais com aspas simples, em oposição a literais de string, que usam aspas duplas. 
+
+===========================================================
+fn main() {
+    let c = 'z';
+    let z: char = 'ℤ'; // with explicit type annotation
+    let heart_eyed_cat = '😻';
+}
+===========================================================
+
+
+TIPOS COMPOSTOS
+	Os tipos compostos podem agrupar vários valores em um tipo. Rust tem dois tipos de compostos primitivos: tuplas e arrays.
+
++ TUPLAS
+	As tuplas têm um comprimento fixo: uma vez declaradas, elas não podem crescer ou diminuir de tamanho.
+	Para obter os valores individuais de uma tupla, podemos usar a correspondência de padrões para desestruturar um valor de tupla.
+
+===========================================================
+fn main() {
+    let tup = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
+
+    println!("The value of y is: {y}");
+}
+===========================================================
+
+	Também podemos acessar um elemento de tupla diretamente usando um ponto ( .) seguido do índice do valor que queremos acessar.
+
+===========================================================
+fn main() {
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+
+    let five_hundred = x.0;
+
+    let six_point_four = x.1;
+
+    let one = x.2;
+}
+===========================================================
+
+
++ ARRAY
+	Ao contrário de uma tupla, cada elemento de uma matriz deve ter o mesmo tipo. Ao contrário dos arrays em algumas outras linguagens, os arrays em Rust têm um comprimento fixo. As matrizes são mais úteis quando você sabe que o número de elementos não precisará ser alterado. Por exemplo, se você estivesse usando os nomes do mês em um programa, provavelmente usaria uma matriz em vez de um vetor porque sabe que sempre conterá 12 elementos.
+
+===============================================================================
+let months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
+===============================================================================
+
+
+	Você escreve o tipo de uma matriz usando colchetes com o tipo de cada elemento, um ponto e vírgula e, em seguida, o número de elementos na matriz, assim:
+
+===========================================================
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+===========================================================
+
+	Aqui, i32 está o tipo de cada elemento. Após o ponto e vírgula, o número 5 indica que a matriz contém cinco elementos.
+
+	Você também pode inicializar uma matriz para conter o mesmo valor para cada elemento especificando o valor inicial, seguido por um ponto e vírgula e, em seguida, o comprimento da matriz entre colchetes, conforme mostrado aqui:
+
+===========================================================
+let a = [3; 5];
+===========================================================
+	A matriz nomeada a conterá 5 elementos que serão todos definidos para o valor 3 inicialmente. Isso é o mesmo que escrever, let a = [3, 3, 3, 3, 3]; mas de uma forma mais concisa.
+
+
+	Um array é um único pedaço de memória de tamanho fixo conhecido que pode ser alocado na pilha. Você pode acessar elementos de um array usando indexação, assim:
+
+===========================================================
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+    let second = a[1];
+}
+===========================================================
+
+
+
+RESUMO:
+
+Inteiro: 
+	let a: u8 = (0 a 255);
+	let b: i8 = (-128 a 127);
+
+Float:
+	let c: f32 = 2.5;
+	let d = 5.1;		//O padrão é f64, só existem f32 e f64
+
+Boolean:
+	let e = true;
+	let f: bool = false;
+
+Char:
+	let g = 'g';
+	let h: char = '😻';
+
+Tuple:
+	let i: (u8, f32, char) = (1, 3.2, '😻');
+		let one = x.0;
+    		let three_point_two = x.1;
+    		let cat_amoroso = x.2;
+
+Array:
+	let j: [i32; 5] = [2, 4, 6, 8, 10];	//Só agrupa variaveis do mesmo tipo
+		//[tipo; tamanho do array]
+
+		let first = a[0];
+		let second = a[1];

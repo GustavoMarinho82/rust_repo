@@ -1,0 +1,30 @@
+=============================================================================
+[package]
+name = "hello_cargo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+=============================================================================
+
+A primeira linha, [package], é um cabeçalho de seção que indica que as instruções a seguir estão configurando um pacote. À medida que adicionarmos mais informações a este arquivo, adicionaremos outras seções.
+
+As próximas três linhas definem as informações de configuração que o Cargo precisa para compilar seu programa: o nome, a versão e a edição do Rust a ser usada. Falaremos sobre a editionchave no Apêndice E .
+
+A última linha, [dependencies], é o início de uma seção para você listar qualquer uma das dependências do seu projeto. Em Rust, os pacotes de código são chamados de "crates" . Não precisaremos de nenhum outro "crate" para este projeto, mas precisaremos no primeiro projeto do Capítulo 2, então usaremos esta seção de dependências.
+
+
+
+Comandos:
+
+cargo new [nome]	- cria um diretório correspondente com o nome, dentro dele há: uma pasta src com um main.rs dentro, um Cargo.toml e um .gitignore
+
+
+cargo build [nome]	- cria um .exe em "/target/debug/[arquivo].exe", que pode ser executado escrevendo: /target/debug/[arquivo].exe
+
+cargo run [nome]	- executa o .rs instaneamente, sem criar um executável
+
+cargo check [nome]	- verifica se o código pode ser compilado corretamente
+
+
+Quando seu projeto estiver finalmente pronto para lançamento, você poderá usar "cargo build --release" para compilá-lo com otimizações. Este comando criará um executável em "target/release" em vez de "target/debug". As otimizações fazem seu código Rust rodar mais rápido, mas ativá-las aumenta o tempo que leva para o seu programa compilar.

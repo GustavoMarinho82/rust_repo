@@ -1,0 +1,43 @@
+	Por padrão em rust, as variaveis são imutáveis.
+
+=============================================================================
+fn main() {
+
+//Se fosse usado o "let mut x = 5;", o código rodaria sem problemas
+    let x = 5;
+    println!("The value of x is: {x}");
+
+         x = 6;
+    println!("The value of x is: {x}");
+}
+//Output: ERRO
+=============================================================================
+
+	Ou seja, esse código dará um erro, pois não dá para mudar o valor de uma variável imutável. A não ser que você a substitua usando outro let:
+
+=============================================================================
+fn main() {
+    let x = 5;
+    	
+	let x = x + 1;
+    println!("The value of x is: {x}");
+}
+//Output: The value of x is: 6
+=============================================================================
+
+
+	Assim como as variáveis ​​imutáveis, as constantes são valores vinculados a um nome e não podem ser alterados, mas há algumas diferenças entre constantes e variáveis.
+
+	Constantes podem ser declaradas em qualquer escopo, incluindo o escopo global, o que as torna úteis para valores que muitas partes do código precisam conhecer. As constantes podem ser definidas apenas para uma expressão constante, não o resultado de um valor que só pode ser calculado em tempo de execução ( ex; let const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3; ). As constantes são válidas durante todo o tempo em que um programa é executado, dentro do escopo em que foram declarados. Essa propriedade torna as constantes úteis para valores em seu domínio de aplicativo que várias partes do programa podem precisar saber, como o número máximo de pontos que qualquer jogador de um jogo é permitido ganhar ou a velocidade da luz.
+
+|	A convenção de nomenclatura do Rust para constantes é usar todas as letras maiúsculas com sublinhados entre as palavras.
+
+	As contantes obrigatoriamente necessitam de um tipo (por exemplo, u16). As constantes são declaradas com "const" em vez de "let".
+
+Comandos:
+
+let x = [valor]		- declara uma variavel imutável
+
+let mut x = [valor]	- declara uma variavel mutável
+
+const x: u32 = [valor]	- declara uma variavel constante

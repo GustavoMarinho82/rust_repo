@@ -23,8 +23,8 @@ fn main() {
                 .read_line(&mut numero)  
                 .expect("Falha ao ler a linha!");
         
-    //Nao eh possivel um numero ser lido pela funcao acima, entao sera necessario converter uma String lida para um numero
-    //Normalmente nao eh necessario o ".trim()", mas no caso de uma String lida via input eh necessario. O .trim() elimina "/n" e "/r/n" presentes na string
+    //Não é possivel um número ser lido pela função acima, então será necessário converter uma String lida para um número
+    //Normalmente não é necessário o ".trim()", mas no caso de uma String lida via input é necessério. O .trim() elimina "/n" e "/r/n" presentes na string
         let numero: i32 = numero.trim().parse().expect("Um numero inteiro não foi digitado!");
 
 

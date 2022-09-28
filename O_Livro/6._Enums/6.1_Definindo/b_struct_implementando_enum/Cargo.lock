@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "como_fazer_input"
+name = "b_struct_implementando_enum"
 version = "0.1.0"

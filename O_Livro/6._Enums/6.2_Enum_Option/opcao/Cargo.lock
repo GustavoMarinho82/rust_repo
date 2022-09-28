@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "como_fazer_input"
+name = "opcao"
 version = "0.1.0"

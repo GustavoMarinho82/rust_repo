@@ -1,22 +1,22 @@
 fn main() {
     println!("Digite um ---");
 
-    if let Ok(oi) = ler_input("".to_string()) {
-        println!("Foi digitado: {}", oi);
-    
-    } else {
-        println!("Um valor inválido foi digitado");
-    }
+    let oi = match ler_input::<u8>() {
+        Ok(valor) => valor,
+        Err(_) => { 
+            println!("Um valor inválido foi digitado!"); 
+                0 
+        }
+    };
+
+    println!("O valor da variável é: {}", oi);
 }
 
-fn ler_input<T: std::str::FromStr> (ex: T) -> Result<T, T::Err>{
-    
-    let mut t = String::new();
-        std::io::stdin().read_line(&mut t).unwrap();
-        let t = t.trim().to_string();
+fn ler_input<T: std::str::FromStr>() -> Result<T, T::Err>{
 
-    match t.parse::<T>() {
-        Ok(a) => return Ok(a),
-        Err(e) => Err(e),
-    }
+    let mut input = String::new();
+        std::io::stdin().read_line(&mut input).expect("Falha ao ler o input!");
+
+    let input = input.trim().parse::<T>()?;
+        Ok(input)
 }

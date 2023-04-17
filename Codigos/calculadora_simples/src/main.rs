@@ -1,48 +1,30 @@
 use std::io;
 
 fn main() {
-
     loop { 
-
         println!("\nCALCULADORA");
 
             println!("Digite um valor");
-                let v1: i64 = ler_i64();
+                let v1: f32 = ler_f32();
         
             println!("Digite outro valor");
-                let v2: i64 = ler_i64();
+                let v2: f32 = ler_f32();
 
-        println!("\nMENU");
-            println!("1 - Adicao");
-            println!("2 - Subtracao");
-            println!("3 - Multiplicacao");
-            println!("4 - Divisao");
-            println!("5 - Fechar o programa");
-            
-            let opcao: u8 = ler_u8();
+        let opcao: u8 = ler_com_menu();
 
-
-        if opcao == 1 {
-            println!("Resultado: {}", (v1 + v2));
-
-        } else if opcao == 2 {
-            println!("Resultado: {}", (v1 - v2));
-
-        } else if opcao == 3 {
-            println!("Resultado: {}", (v1 * v2));
-
-        } else if opcao == 4 {
-            println!("Resultado: {}", (v1 / v2));
-
-        } else if opcao == 5 {
-            break;
+        match opcao {
+            1 => println!("Resultado: {}", (v1 + v2)),
+            2 => println!("Resultado: {}", (v1 - v2)),
+            3 => println!("Resultado: {}", (v1 * v2)),
+            4 => println!("Resultado: {}", (v1 / v2)),
+            5 => break,
+            _ => ()
         }
-
     }
 }
 
 
-fn ler_i64 () -> i64 {
+fn ler_f32 () -> f32 {
     let mut temporario = String::new();
 
         io::stdin()
@@ -55,7 +37,14 @@ fn ler_i64 () -> i64 {
         .unwrap()
 }
 
-fn ler_u8 () -> u8 {
+fn ler_com_menu () -> u8 {
+    println!("\nMENU");
+        println!("1 - Adicao");
+        println!("2 - Subtracao");
+        println!("3 - Multiplicacao");
+        println!("4 - Divisao");
+        println!("5 - Fechar o programa");
+
     let mut temporario = String::new();
 
         io::stdin()
